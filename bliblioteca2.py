@@ -106,39 +106,51 @@ class Vip(Ingresso):
 
 """class Forma:
     def __init__(self):
-        self.area=0
-        self.perimetro=0
+        self.area = 0
+        self.perimetro = 0
 
-    def calculararea(self):
-            pass
+    def calcularArea(self):
+        pass
 
-    def calculaperimtro(self):
-            pass
-
+    def calcularPerimetro(self):
+        pass
 
 
 class Retangulo(Forma):
-    def __init__(self):
+    def __init__(self, base, altura):
         super().__init__()
-        
+        self.base = base
+        self.altura = altura
 
-    def calculaArea(self,base,altura):
-        self.area=base * altura
-        print(f"a area e de {self.area}")
-    
+    def calcularArea(self):
+        self.area = self.base * self.altura
+        print(f"A área do retângulo é {self.area}")
 
-    def calculaperimtro(self,base,altura):
-        self.perimetro=2*(altura+base)
-        print(f"o perimetro e de {self.perimetro}")
+    def calcularPerimetro(self):
+        self.perimetro = 2 * (self.base + self.altura)
+        print(f"O perímetro do retângulo é {self.perimetro}")
+
 
 class Triangulo(Forma):
-    def __init__(self,altura,base,largura):
-        super().__init__(area,perimetro)
-        self.altura=altura
-"""
+    def __init__(self, base, altura, lado2, lado3):
+        super().__init__()
+        self.base = base
+        self.altura = altura
+        self.lado2 = lado2
+        self.lado3 = lado3
 
+    def calcularArea(self):
+        self.area = (self.base * self.altura) / 2
+        print(f"A área do triângulo é {self.area}")
+
+    def calcularPerimetro(self):
+        self.perimetro = self.base + self.lado2 + self.lado3
+        print(f"O perímetro do triângulo é {self.perimetro}")
+
+"""
+"""
 class Atleta:
-    def __init__(self,aposentado,peso=0.0):
+    def __init__(self,aposentado,peso):
         self.peso=peso
         self.aposentado=aposentado
         self.aquecer=False
@@ -152,11 +164,99 @@ class Atleta:
     def aposentado(self):
         if not self.aquecer:
             self.aquecer=True
-            print("o atleta esta aposentado")
+            print("o atleta está aposentado")
 
         else:
             print("o atleta aquece")
 
+class Corredor(Atleta):
+    def __init__(self,aposentado,peso):
+        super().__init__(aposentado,peso)
 
+    def corre(self):
+        if not self.aposentado:
+            self.aquecer=True
+            print("corredor esta aquecido,por tanto ele esta correndo")
+
+        else:
+            print("corredor esta aposentado")
+class Nadador(Atleta):
+    def __init__(self,aposentado,peso):
+        super().__init__(aposentado,peso)
+    def nadar(self):
+        if not self.aquecer:
+            self.aquecer=True
+            print("o nadador esta aquecido,ele ja pode nadar")
+        else:
+            print("nadador esta aposentado ele não pode mas nadar")
+class Ciclista(Atleta):
+    def __init__(self,aposentado,peso):
+        super().__init__(aposentado,peso)
+    def pedalar(self):
+        if not self.aquecer:
+            self.aquecer=True
+            print("O ciclista está pedalando.")
+        else:
+            print("O ciclista está aposentado.")
+class Triatleta(Corredor,Nadador,Ciclista):
+    def __init__(self,aposentado,peso):
+        super().__init__(aposentado,peso)
+    def poliatleta(self):
+        if not self.aquecer:
+            self.aquecer=True
+            print("ele é um triatleta.")
+        else:
+            print("ele não e um triatleta.")
+"""
+class Atleta:
+    def __init__(self, aposentado, peso):
+        self.peso = peso
+        self.aposentado = aposentado
+        self.esta_aquecido = False
+
+    def aquecer(self):
+        if not self.aposentado:
+            self.esta_aquecido = True
+            print("O atleta está aquecendo.")
+        else:
+            print("O atleta está aposentado e não pode aquecer.")
+
+
+class Corredor(Atleta):
+    def corre(self):
+        if self.aposentado:
+            print("O corredor está aposentado e não pode correr.")
+        elif not self.esta_aquecido:
+            print("O corredor precisa aquecer antes de correr.")
+        else:
+            print("O corredor está correndo.")
+
+
+class Nadador(Atleta):
+    def nadar(self):
+        if self.aposentado:
+            print("O nadador está aposentado e não pode nadar.")
+        elif not self.esta_aquecido:
+            print("O nadador precisa aquecer antes de nadar.")
+        else:
+            print("O nadador está nadando.")
+
+
+class Ciclista(Atleta):
+    def pedalar(self):
+        if self.aposentado:
+            print("O ciclista está aposentado e não pode pedalar.")
+        elif not self.esta_aquecido:
+            print("O ciclista precisa aquecer antes de pedalar.")
+        else:
+            print("O ciclista está pedalando.")
+
+
+class Triatleta(Corredor, Nadador, Ciclista):
+    def poliatleta(self):
+        if self.aposentado:
+            print("O triatleta está aposentado e não compete mais.")
+        else:
+            print("O triatleta participa das três modalidades.")
 
 
